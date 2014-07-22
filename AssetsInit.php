@@ -56,14 +56,9 @@ Class AssetsInit {
     private function dnsPrefetch()
     {
         if( !empty($this->prefetch) ):
-        ?>
-            <meta http-equiv="x-dns-prefetch-control" content="on">
-            <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-            <link rel="dns-prefetch" href="//code.jquery.com">
-            <?php
-            foreach($this->prefetch as $url):?>
-                <link rel="dns-prefetch" href="//<?php echo $url;?>">
-            <?php
+            echo "<meta http-equiv='x-dns-prefetch-control' content='on'>\n";
+            foreach($this->prefetch as $url):
+                echo "<link rel='dns-prefetch' href='//$url'>\n";
             endforeach;
         endif;
     }
@@ -82,10 +77,11 @@ Class AssetsInit {
         $host = $param["host"];
         $myhost = parse_url(home_url());
         $myhost = $myhost["host"];
-        if ( empty($this->prefetch) or in_array($url, $this->prefetch) ) {
-            $this->prefetch[] = $host;
+        if($myhost != $host) {
+            if ( empty($this->prefetch) or !in_array($host, $this->prefetch) ) {
+                $this->prefetch[] = $host;
+            }
         }
-
     }
 
     /**
