@@ -4,8 +4,14 @@ namespace Torounit\WPLibrary;
 /**
  * Custom post type & taxonomy manager
  *
+ * @see http://2inc.org/blog/2012/03/16/1322/
+ * @author Toro_Unit, Takashi Kitajima.
  * @package WPLibrary
+ *
  */
+
+
+
 Class CPTManager {
 
     private $post_types = [];

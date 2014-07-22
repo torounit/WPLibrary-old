@@ -1,5 +1,15 @@
 <?php
 namespace Torounit\WPLibrary;
+
+/**
+ *
+ * AddPage
+ * @link http://firegoby.jp/archives/2872
+ * @author Takayuki Miyauchi
+ *
+ */
+
+
 class AddRewriteRules {
     private $rule     = null;
     private $query    = null;

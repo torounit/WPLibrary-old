@@ -1,6 +1,14 @@
 <?php
 namespace Torounit\WPLibrary;
 
+/**
+ *
+ * AddPage
+ * @link http://firegoby.jp/archives/2872
+ * @author Takayuki Miyauchi
+ *
+ */
+
 class AddPage {
     private $rule      = null;
     private $title     = null;
