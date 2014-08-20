@@ -49,7 +49,8 @@ Class SliderCreater {
                         'type' => 'image',
                         'save_format' => 'id',
                         'preview_size' => 'slide',
-                        'library' => 'uploadedTo',
+                        //'library' => 'uploadedTo',
+                        'library' => 'all',
                         ),
                     array (
                         'key' => $this->createKey("url"),
