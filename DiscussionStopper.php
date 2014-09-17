@@ -13,9 +13,10 @@ class DiscussionStopper
 
     public function stop()
     {
-        update_option( "default_ping_status", false );
-        update_option( "default_pingback_flag", false );
-        update_option( "default_comment_status", false );
+
+        add_filter("comments_open", "__return_false");
+        add_filter("pings_open", "__return_false");
+
     }
 
 }
