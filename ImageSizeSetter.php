@@ -4,15 +4,15 @@ namespace Torounit\WPLibrary;
 
 Class ImageSizeSetter {
 
-    public $image_sizes = array();
+    private $image_sizes = array();
 
     public function __construct()
     {
-        add_action( 'after_setup_theme', array(&$this, 'addImageSizes') );
-        add_filter( 'image_size_names_choose', array(&$this, 'addImageSizeSelect') );
+        add_action( 'after_setup_theme', array($this, 'addImageSizes') );
+        add_filter( 'image_size_names_choose', array($this, 'addImageSizeSelect') );
     }
 
-    public function addImageSize($name, $width, $height, $crop, $label, $selectable)
+    public function addSize($name, $width, $height, $crop, $label, $selectable = true)
     {
         $this->image_sizes[$name] = array(
             'name'       => $label, // 選択肢のラベル名
@@ -23,14 +23,14 @@ Class ImageSizeSetter {
         );
     }
 
-    public function add_image_sizes()
+    public function addImageSizes()
     {
         foreach ($this->image_sizes as $slug => $size) {
             add_image_size( $slug, $size['width'], $size['height'], $size['crop'] );
         }
     }
 
-    public function add_image_size_select($size_names)
+    public function addImageSizeSelect($size_names)
     {
         $custom_sizes = get_intermediate_image_sizes();
         foreach ($custom_sizes as $custom_size) {
@@ -38,7 +38,6 @@ Class ImageSizeSetter {
                 $size_names[$custom_size] = $this->image_sizes[$custom_size]['name'];
             }
         }
-
         return $size_names;
     }
 }
