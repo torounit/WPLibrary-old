@@ -12,10 +12,10 @@ Class ImageSizeSetter {
         add_filter( 'image_size_names_choose', array($this, 'addImageSizeSelect') );
     }
 
-    public function addSize($name, $width, $height, $crop, $label, $selectable = true)
+    public function addSize($name, $width, $height, $crop, $selectable = false, $label = "")
     {
         $this->image_sizes[$name] = array(
-            'name'       => $label, // 選択肢のラベル名
+            'label'       => $label, // 選択肢のラベル名
             'width'      => $width,    // 最大画像幅
             'height'     => $height,    // 最大画像高さ
             'crop'       => $crop,  // 切り抜きを行うかどうか
@@ -35,7 +35,7 @@ Class ImageSizeSetter {
         $custom_sizes = get_intermediate_image_sizes();
         foreach ($custom_sizes as $custom_size) {
             if ( isset( $this->image_sizes[$custom_size]['selectable'] ) && $this->image_sizes[$custom_size]['selectable'] ) {
-                $size_names[$custom_size] = $this->image_sizes[$custom_size]['name'];
+                $size_names[$custom_size] = $this->image_sizes[$custom_size]['label'];
             }
         }
         return $size_names;
