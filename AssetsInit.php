@@ -74,12 +74,14 @@ Class AssetsInit {
     {
         $url = preg_replace("/^\/\//", "http://", $url);
         $param = parse_url($url);
-        $host = $param["host"];
-        $myhost = parse_url(home_url());
-        $myhost = $myhost["host"];
-        if($myhost != $host) {
-            if ( empty($this->prefetch) or !in_array($host, $this->prefetch) ) {
-                $this->prefetch[] = $host;
+        if(isset($param["host"])) {
+            $host = $param["host"];
+            $myhost = parse_url(home_url());
+            $myhost = $myhost["host"];
+            if($myhost != $host) {
+                if ( empty($this->prefetch) or !in_array($host, $this->prefetch) ) {
+                    $this->prefetch[] = $host;
+                }
             }
         }
     }
