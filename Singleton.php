@@ -21,15 +21,15 @@ trait Singleton
     abstract protected function initialize(); # ここでコンストラクタの初期化実装
 
 	/**
-	 * @return self
+	 * @return static
 	 */
 	final public static function getInstance()
     {
 	    if( self::$instance == null )
 	    {
-		    self::$instance = new self();
+		    self::$instance = new static();
 	    }
-	    return self::$instance;
+	    return static::$instance;
     }
 
 	/**
