@@ -10,29 +10,32 @@ namespace Torounit\WPLibrary;
 
 trait Singleton
 {
-    private static $instance = array();
+    private static $instance = null;
 
-    final private function __construct()
+
+	final private function __construct()
     {
-        if (isset(self::$instance[get_called_class()])) {
-            throw new Exception('You can not create more than one copy of a singleton.');
-        }
         static::initialize();
     }
 
     abstract protected function initialize(); # ここでコンストラクタの初期化実装
 
-    final public static function getInstance()
+	/**
+	 * @return self
+	 */
+	final public static function getInstance()
     {
-        $class = get_called_class();
-        if (!isset(self::$instance[$class])) {
-            self::$instance[$class] = new static();
-        }
-
-        return self::$instance[$class];
+	    if( self::$instance == null )
+	    {
+		    self::$instance = new self();
+	    }
+	    return self::$instance;
     }
 
-    final private function __clone()
+	/**
+	 * @throws Exception
+	 */
+	final private function __clone()
     {
         throw new Exception('You can not clone a singleton.');
     }
