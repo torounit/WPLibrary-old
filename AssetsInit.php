@@ -8,17 +8,20 @@ namespace Torounit\WPLibrary;
  */
 Class AssetsInit {
 
-    use Singleton;
 
     public $styles;
     public $scripts;
     public $prefetch;
 
+	public function __construct() {
+		$this->addHook();
+	}
+
     /**
-     * inisalize
+     * initialize
      *
      * @access protected
-     * @see \Torounit\WPLibrary\Singleton/initialize
+     * @see \Torounit\WPLibrary\Singleton::initialize
      */
     protected function initialize()
     {
